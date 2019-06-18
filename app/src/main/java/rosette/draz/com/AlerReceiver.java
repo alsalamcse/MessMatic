@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.telephony.SmsManager;
@@ -15,9 +16,14 @@ public class AlerReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        String message = intent.getStringExtra("Message");
+        String phone = intent.getStringExtra("Phone");
+
         //Send the SMS//
         SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage("0548047916", null, "اذا وصلتك يعني زبططط", null, null);
+        smsManager.sendTextMessage(phone, null, message, null, null);
 
     }
+
+
 }
