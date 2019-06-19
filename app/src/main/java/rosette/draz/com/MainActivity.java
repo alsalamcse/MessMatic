@@ -44,13 +44,6 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-
-
-
-
 
         alarm = findViewById(R.id.alarm);
         et_message = findViewById(R.id.et_message);
@@ -69,10 +62,6 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
            public void onClick(View v) {
                DialogFragment timePicker = new TimePickerFragment();
                timePicker.show(getSupportFragmentManager(), "time picker");
-               final  String id = user.getUid();
-               databaseReference.child("Users:").child(id).child("Message").setValue(et_message.getText().toString());
-               databaseReference.child("Users:").child(id).child("Phone").setValue(et_phone.getText().toString());
-               databaseReference.child("Users:").child(id).child("Time").setValue(alarm.getText().toString());
 
            }
        });
